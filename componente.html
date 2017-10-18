@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>V-Bind | VueJs2 axios</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  </head>
+  <body>
+    <div id="main" class="container">
+
+      <div class="row">
+        <div class="col-sm-6">
+          <h1>Album - components</h1>
+          <common-list v-bind:lists="albums"></common-list>
+        </div>
+        <div class="col-sm-6">
+          <h1>Posts - normal</h1>
+          <ul class="list-group">
+            <li v-for="item in posts" class="list-group-item">
+              {{ item.title }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </body>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.min.js"></script>
+
+  <script type="text/javascript">
+
+    Vue.component('common-list', {
+      props: ['lists'],
+      template: `<ul class="list-group">
+        <li v-for="item in lists" class="list-group-item">
+          {{ item.title }}
+        </li>
+      </ul>`,
+    });
+
+    var urlPosts = 'https://jsonplaceholder.typicode.com/posts';
+    var urlAlbums = 'https://jsonplaceholder.typicode.com/albums';
+
+    new Vue({
+      el: '#main',
+      created: function(){
+        this.getPosts(),
+        this.getAlbums()
+      },
+      data: {
+        posts: [],
+        albums: []
+      },
+      methods: {
+        getPosts: function(){
+          axios.get(urlPosts).then(response => {
+            this.posts = response.data;
+          });
+        },
+        getAlbums: function(){
+          axios.get(urlAlbums).then(response => {
+            this.albums = response.data;
+          });
+        }
+      }
+    });
+  </script>
+</html>

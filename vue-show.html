@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>V-Bind | VueJs2</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  </head>
+  <body>
+    <div id="main">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h3>Siscribirse al boletin</h3>
+          </div>
+          <div class="col-md-5">
+            <input type="email" v-model="email" class="form-control">
+          </div>
+          <div class="col-md-1">
+            <button type="submit" name="button" v-show="email" class="btn btn-primary">Subm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+  <script type="text/javascript">
+    var urlUsers = 'https://randomuser.me/api/?results=100';
+    new Vue({
+      el: '#main',
+      data: {
+        email: ''
+      }
+    });
+  </script>
+</html>

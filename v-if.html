@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>V-Bind | VueJs2</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  </head>
+  <body>
+    <div id="main">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5">
+            <template v-if="!mensaje">
+              <h3 >Escribe la sugerencia</h3>
+              <p>El equipo de soporte respone en maximo 24 horas</p>
+              <p><em>Podrias utilizar twitter para comunicarte</em></p>
+            </template>
+            <h3 v-else>Presiona Enter para enviar</h3>
+            <textarea name="name" class="form-control" v-model="mensaje"></textarea>
+          </div>
+          <div class="col-md-7">
+            <h3>JSON</h3>
+            <pre>
+              {{ $data }}
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+  <script type="text/javascript">
+    var urlUsers = 'https://randomuser.me/api/?results=100';
+    new Vue({
+      el: '#main',
+      data: {
+        mensaje: ''
+      }
+    });
+  </script>
+</html>

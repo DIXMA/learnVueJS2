@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>V-Bind | VueJs2 axios</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  </head>
+  <body>
+    <div id="main" class="container">
+      <div class="row">
+        <div class="col-sm-4">
+          <h1>Lista VueJs - Ajax axios</h1>
+          <ul class="list-group">
+            <li v-for="item in lists" class="list-group-item">
+              {{ item.name.first }} {{ item.name.last }}
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-8">
+          <h1>Json</h1>
+          <pre>
+            {{ $data || json }}
+          </pre>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.min.js"></script>
+
+  <!--  -->
+
+  <script type="text/javascript">
+    var urlUsers = 'https://randomuser.me/api/?results=100';
+    new Vue({
+      el: '#main',
+      created: function(){
+        this.getUsers();
+      },
+      data: {
+        lists: []
+      },
+      methods: {
+        getUsers: function(){
+          axios.get(urlUsers).then(response => {
+            this.lists = response.data.results;
+          });
+        }
+      }
+    });
+  </script>
+</html>
